@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "Editing todo lists" do 
+
+	let!(:todo_list) {TodoList.create(title: "Groceries", description: "Grocery list.")}
 	def update_todo_list(options={})
 		options[:title] ||= "My todo list"
 		options[:description] ||= "This is my todo list."
@@ -19,7 +21,7 @@ describe "Editing todo lists" do
 
 
 	it "updates a todo list successfully with correct information" do
-		todo_list = TodoList.create(title: "Groceries", description: "Grocery list.")
+		#todo_list = 
 
 		update_todo_list todo_list: todo_list, 
 						title: "New title", 
@@ -32,4 +34,31 @@ describe "Editing todo lists" do
 		expect(todo_list.description).to eq("New description")
 
 	end
+
+	it "displays an error with no title" do
+		update_todo_list todo_list: todo_list, title: ""
+		title = todo_list.title
+		todo_list.reload
+		expect(todo_list.title).to eq(title)
+		expect(page).to have_content("error")
+	end
+
+	it "displays an error with too short a title" do
+		update_todo_list todo_list: todo_list, title: "Hi"
+		expect(page).to have_content("error")
+	end
+
+	it "displays an error with no description" do
+		update_todo_list todo_list: todo_list, description: ""
+		expect(page).to have_content("error")
+	end
+
+
+	it "displays an error with too short a description" do
+		update_todo_list todo_list: todo_list, description: "Hi"
+		expect(page).to have_content("error")
+	end
+
+
+
 end
