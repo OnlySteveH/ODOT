@@ -5,7 +5,7 @@ describe "Editing todo lists" do
 	def update_todo_list(options={})
 		options[:title] ||= "My todo list"
 		options[:description] ||= "This is my todo list."
-
+		visit "/todo_lists"
 		todo_list = options[:todo_list]
 
 		within "#todo_list_#{todo_list.id}" do
