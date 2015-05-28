@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Viewing todo items" do
-	let!(:todo_list) {TodoList.create(title: "Grocery", description: "Groceries")}
+	let!(:todo_list) { TodoList.create(title: "Grocery", description: "Groceries") }
 
 
 	it "displays the title of the todo list" do
@@ -21,7 +21,7 @@ describe "Viewing todo items" do
 		todo_list.todo_items.create(content: "Eggs")
 
 		visit_todo_list(todo_list)
-		expect(page.all("ul.todo_items li").size).to eq(2)
+		expect(page.all("todo_list.todo_items").size).to eq(2)
 
 		within "ul.todo_items" do 
 			expect(page).to have_content("Milk")
