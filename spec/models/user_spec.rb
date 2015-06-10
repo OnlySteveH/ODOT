@@ -7,7 +7,7 @@ describe User do
 			last_name: "Hunter",
 			email: "onlysteveh@me.com",
 			password: "treehouse1234",
-			password_confirmation: "treehouse12345"
+			password_confirmation: "treehouse1234"
 		}
 	}
   context "validations" do

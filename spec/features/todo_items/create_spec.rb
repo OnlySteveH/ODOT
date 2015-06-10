@@ -13,7 +13,6 @@ describe "Adding todo items" do
 		within("td.todo_items") do
 			expect(page).to have_content("Milk")
 		end
-
 	end
 
 	it "displays an error with no content" do 
